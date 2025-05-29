@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.application.Platform;
 
 public class GameView {
+	private Stage stage;
 	private final GameModel model;
     private final GameManager manager;
 	private final int playerCount;
@@ -48,7 +49,7 @@ public class GameView {
     }
 	
 	public void show(Stage stage) {
-		
+		this.stage = stage;
 		Label infoLabel = new Label("Players: " + playerCount +",Pieces: "+pieceCount+", Board: " + boardType);
 	
         BorderPane root = new BorderPane();
@@ -64,8 +65,10 @@ public class GameView {
 		stage.show();
 		
 	}
-	private void showPlacementBoard(List<String> ranking) {
-     
-    }
+	 public void showPlacementBoard(List<String> playerRanking) {
+	        stage.close();
+	        PlacementView placementView = new PlacementView(playerRanking);
+	        placementView.show(new Stage());
+	    }
 	
 }
